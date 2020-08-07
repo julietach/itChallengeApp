@@ -1,0 +1,75 @@
+<h1 class="mt-5">
+    Datos del Alumno </h1>
+<hr>
+<div class="col text-right">
+    <button class="btn btn-danger w-25" routerLink="/alumnos">
+        <i class="fas fa-arrow-left"></i>
+Regresar
+</button>
+</div>
+<div class="jumbotron mt-5">
+    <div class="row animated fadeIn faster">
+        <div class="col">
+
+            <form (ngSubmit)="guardar( f )" #f="ngForm">
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col">
+                            <label>Identificador</label>
+                            <input type="text" class="form-control" [(ngModel)]="alumno.identificador" name="id" disabled="disabled">
+                            <small class="form-text text-muted">Este campo es autogenerado</small>
+                        </div>
+                        <div class="col">
+                            <label>Legajo</label>
+                            <input type="text" class="form-control" [(ngModel)]="alumno.legajo" name="legajo">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <input type="hidden" [(ngModel)]="alumno.persona.identificador" name="idpersona">
+                        <div class="col">
+                            <label>Tipo Documento</label>
+                            <select [(ngModel)]="alumno.persona.tipodoc" id="tipodoc" class="form-control" name="tipodoc">
+                            <option>Seleccionar...</option>
+                            <option>DNI</option>
+                            <option>LIBRETA</option>
+                          </select>
+                        </div>
+                        <div class="col">
+                            <label>Documento</label>
+                            <input type="text" class="form-control" [(ngModel)]="alumno.persona.documento" name="documento">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label>Nombre</label>
+                            <input type="text" class="form-control" name="nombre" [(ngModel)]="alumno.persona.nombre" required>
+                        </div>
+                        <div class="col">
+                            <label>Apellido</label>
+                            <input type="text" class="form-control" name="apellido" [(ngModel)]="alumno.persona.apellido" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label>Fecha Nac.</label>
+                            <input type="date" class="form-control" name="fechanac" [(ngModel)]="alumno.persona.fechanac" required>
+                        </div>
+                        <div class=" col ">
+                            <label>Direccion</label>
+                            <input type="text " class="form-control " name="direccion " [(ngModel)]="alumno.persona.direccion " required>
+                        </div>
+                    </div>
+                    <div class="row mt-5 text-center">
+                        <div class="col text-left">
+                            <button type="submit " class="btn btn-primary w-100">
+                            <i class="fa fa-save "></i>
+                            Guardar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

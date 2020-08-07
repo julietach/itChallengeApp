@@ -1,0 +1,54 @@
+<div class="row mt-5">
+    <div class="col">
+        <div class="row">
+            <label for=""><u>Curso:</u> {{curso.nombre}}</label> </div>
+        <div class="row">
+            <label for=""><u>Docente:</u>{{curso.docente.persona.apellido}}, {{curso.docente.persona.nombre}}</label> </div>
+    </div>
+    <div class="col">
+        <label for=""><u>Carrera:</u>{{curso.carrera.nombre}}</label> </div>
+</div>
+
+<hr>
+
+<table *ngIf="!cargando && inscripcionCurso.length > 0" class="table mt-3 animated fadeIn faster animated fadeIn faster">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Legajo</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Fecha Inscripcion</th>
+            <th scope="col">Nota Final</th>
+            <th scope="col">Estado</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let curso of inscripcionCurso; let i = index">
+            <th scope="row"></th>
+            <td>{{curso.alumno.legajo}}</td>
+            <td>{{curso.alumno.persona.nombre}}</td>
+            <td>{{curso.alumno.persona.apellido}}</td>
+            <td>{{curso.fechainscripcion| date:"dd/MM/yyyy"}}</td>
+            <td>{{curso.notafinal}}</td>
+            <td>{{curso.estado}}</td>
+        </tr>
+    </tbody>
+</table>
+
+<div *ngIf="!cargando && inscripcionCurso.length === 0" class="alert alert-warning text-center mt-3 animated fadeIn faster">
+    <h4 class="alert-heading">No hay registros</h4>
+    <p>
+        <i class="fa fa-exclamation fa-2x"></i>
+    </p>
+</div>
+
+<div *ngIf="cargando" class="alert alert-info text-center mt-3 animated fadeIn faster">
+    <h4 class="alert-heading">Cargando</h4>
+    <p>
+        <i class="fa fa-sync-alt fa-spin fa-2x"></i>
+    </p>
+    <p class="mb-0">
+        Espere por favor
+    </p>
+</div>

@@ -1,0 +1,82 @@
+<div *ngIf="alumno">
+    <div class="row mt-5">
+        <h1>
+            Estado Académico</h1>
+    </div>
+    <hr>
+    <div class="row">
+        <label>{{alumno.persona.apellido}}, {{alumno.persona.nombre}} - Leg: {{alumno.legajo}} </label>
+    </div>
+    <h3 class="text-center">Inscripcion a carreras</h3>
+    <table class="table mt-3 animated fadeIn faster animated fadeIn faster">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre Carrera</th>
+                <th scope="col">Fecha Inscripción</th>
+                <th scope="col">Nota Promedio de Cursos Aprobados</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let inscripcionCarrera of inscripcionesCarrera; let i = index">
+                <th scope="row">{{ i + 1 }}</th>
+                <td>{{inscripcionCarrera.carrera.nombre}}</td>
+                <td>{{inscripcionCarrera.fechainscripcion}}</td>
+                <td *ngIf="promedioCursosAprobados">{{promedioCursosAprobados[i].avg| number:'1.2-2'}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <h3 class="text-center">Inscripción a Cursos Actuales</h3>
+    <table class="table mt-3 animated fadeIn faster animated fadeIn faster">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Descripción</th>
+                <th scope="col">Fecha Inscripción</th>
+                <th scope="col">Estado</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let inscripcionCursoActual of inscripcionesCursosActual; let i = index">
+                <th scope="row">{{ i + 1 }}</th>
+                <td>{{ inscripcionCursoActual.curso.nombre }}</td>
+                <td>{{ inscripcionCursoActual.curso.descripcion }}</td>
+                <td>{{ inscripcionCursoActual.fechainscripcion }}</td>
+                <td>{{ inscripcionCursoActual.estado }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <h3 class="text-center">Inscripción a Cursos Anteriores</h3>
+    <table class="table mt-3 animated fadeIn faster animated fadeIn faster">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Fecha Inscripción</th>
+                <th scope="col">Nota</th>
+                <th scope="col">Estado</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let inscripcionCursoAnterior of inscripcionesCursosAnteriores; let i = index">
+                <th scope="row">{{ i + 1 }}</th>
+                <td>{{ inscripcionCursoAnterior.curso.nombre }}</td>
+                <td>{{ inscripcionCursoAnterior.curso.descripcion }}</td>
+                <td>{{ inscripcionCursoAnterior.notafinal }}</td>
+                <td>{{ inscripcionCursoAnterior.estado }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div *ngIf="!alumno" class="mt-5">
+    <div class="alert alert-danger text-center" role="alert">
+        No existe alumno registrado con legajo: {{legajo}}
+    </div>
+    <div class="col text-center mt-5">
+        <button class="btn btn-danger w-25" routerLink="/alumnos">
+            <i class="fas fa-arrow-left"></i>
+    Regresar
+    </button>
+    </div>
+</div>

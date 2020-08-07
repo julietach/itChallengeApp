@@ -1,0 +1,54 @@
+<h1 class="mt-5">
+    Listado de Cursos</h1>
+<hr>
+
+
+<div class="row">
+    <div class="col text-center">
+        <button class="btn btn-outline-primary">
+      <i class="fa fa-plus"></i>
+      Nuevo Curso
+    </button>
+    </div>
+</div>
+<table *ngIf="!cargando && cursos.length > 0" class="table mt-3 animated fadeIn faster animated fadeIn faster">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Descripcion</th>
+            <th scope="col">Cupo Maximo</th>
+            <th scope="col">Anio</th>
+            <th scope="col">Detalle</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let curso of cursos; let i = index">
+            <th scope="row">{{curso.identificador}}</th>
+            <td>{{curso.nombre}}</td>
+            <td>{{curso.descripcion}}</td>
+            <td>{{curso.cupomaximo}}</td>
+            <td>{{curso.anio}}</td>
+            <td>
+                <button class="btn btn-success" [routerLink]="['/cursos/detalle', curso.identificador ]"><i class="far fa-file-alt"></i></button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div *ngIf="!cargando && cursos.length === 0" class="alert alert-warning text-center mt-3 animated fadeIn faster">
+    <h4 class="alert-heading">No hay registros</h4>
+    <p>
+        <i class="fa fa-exclamation fa-2x"></i>
+    </p>
+</div>
+
+<div *ngIf="cargando" class="alert alert-info text-center mt-3 animated fadeIn faster">
+    <h4 class="alert-heading">Cargando</h4>
+    <p>
+        <i class="fa fa-sync-alt fa-spin fa-2x"></i>
+    </p>
+    <p class="mb-0">
+        Espere por favor
+    </p>
+</div>

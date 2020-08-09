@@ -1,0 +1,15 @@
+<div class="form-group">
+    <label for="exampleFormControlSelect1">Carreras</label>
+    <select (change)="guardarSeleccion($event.target.value)" class="form-control" id="exampleFormControlSelect1">
+    <option >Seleccione carrera</option>
+    <option *ngFor="let carrera of carreras"  [value]='carrera.identificador'>{{carrera.nombre}}</option>
+  </select>
+</div>
+<div class="row mt-5 text-center">
+    <div class="col text-center">
+        <button type="submit " class="btn btn-primary w-25" (click)="guardar()">
+        <i class="fa fa-save "></i>
+        Guardar
+        </button>
+    </div>
+</div>

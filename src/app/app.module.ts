@@ -13,6 +13,7 @@ import { EstadoAcademicoComponent } from './components/estado-academico/estado-a
 import { CursosComponent } from './components/cursos/cursos.component';
 import { DetalleCursoComponent } from './components/detalle-curso/detalle-curso.component';
 import { InscripcionMateriaComponent } from './components/inscripcion-materia/inscripcion-materia.component';
+import { InscripcionCarreraComponent } from './components/inscripcion-carrera/inscripcion-carrera.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { InscripcionMateriaComponent } from './components/inscripcion-materia/in
     EstadoAcademicoComponent,
     CursosComponent,
     DetalleCursoComponent,
-    InscripcionMateriaComponent
+    InscripcionMateriaComponent,
+    InscripcionCarreraComponent
   ],
   imports: [
     BrowserModule,

@@ -5,5 +5,7 @@ export class InscripcionCarrera {
     carrera: Carrera;
     alumno: Alumno;
     constructor() {
+        this.carrera=new Carrera();
+        this.alumno= new Alumno();
     }
 }

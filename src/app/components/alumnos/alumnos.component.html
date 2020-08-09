@@ -19,7 +19,7 @@
 </div>
 
 
-<table *ngIf="!cargando && alumnos.length > 0" class="table mt-3 animated fadeIn faster animated fadeIn faster">
+<table *ngIf="!cargando && alumnos.length > 0" class="table mt-3 animated fadeIn faster animated fadeIn faster" id="customers">
     <thead class="thead-dark">
         <tr>
             <th scope="col">#</th>
@@ -35,7 +35,7 @@
     </thead>
     <tbody>
         <tr *ngFor="let alumno of alumnos; let i = index">
-            <th scope="row">{{alumno.identificador }}</th>
+            <td>{{alumno.identificador }}</td>
             <td>{{ alumno.legajo }}</td>
             <td>{{ alumno.persona.tipodoc }}</td>
             <td>{{ alumno.persona.documento }}</td>

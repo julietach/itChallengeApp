@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Alumno } from '../models/alumno.model';
 import { InscripcionCurso } from '../models/inscripcion-curso.model';
+import { InscripcionCarrera } from '../models/inscripcion-carrera.model';
 
 @Injectable({
   providedIn: 'root'
@@ -49,5 +50,14 @@ export class AlumnosService {
   }
   createIncripcionCurso(inscripcionCurso: InscripcionCurso){
     return this.http.put(this.urlApi+ 'inscripcionCurso',{inscripcionCurso});
+  }
+  getCarreras(){
+    return this.http.get(this.urlApi+ 'carreras');
+  }
+  createInscripcionCarrera(inscripcionCarrera: InscripcionCarrera){
+    return this.http.put(this.urlApi+ 'inscripcionCarrera/create',{inscripcionCarrera});
+  }
+  getCarrera(idcarrera){
+    return this.http.post(this.urlApi+ 'carrera',{idcarrera});
   }
 }

@@ -1,17 +1,23 @@
-<div class="row mt-5">
+<h1 class="mt-5">
+    Detalle del Curso</h1>
+<hr>
+<div class="row mt-5 ml-1">
     <div class="col">
         <div class="row">
-            <label for=""><u>Curso:</u> {{curso.nombre}}</label> </div>
+            <h5><u>Curso:</u> {{curso.nombre}}</h5>
+        </div>
         <div class="row">
-            <label for=""><u>Docente:</u>{{curso.docente.persona.apellido}}, {{curso.docente.persona.nombre}}</label> </div>
+            <h5><u>Docente:</u> {{curso.docente.persona.apellido}}, {{curso.docente.persona.nombre}}</h5>
+        </div>
     </div>
     <div class="col">
-        <label for=""><u>Carrera:</u>{{curso.carrera.nombre}}</label> </div>
+        <h5><u>Carrera:</u> {{curso.carrera.nombre}}</h5>
+    </div>
 </div>
 
 <hr>
 
-<table *ngIf="!cargando && inscripcionCurso.length > 0" class="table mt-3 animated fadeIn faster animated fadeIn faster">
+<table *ngIf="!cargando && inscripcionCurso.length > 0" class="table mt-3 animated fadeIn faster animated fadeIn faster" id="customers">
     <thead class="thead-dark">
         <tr>
             <th scope="col">#</th>
@@ -25,7 +31,7 @@
     </thead>
     <tbody>
         <tr *ngFor="let curso of inscripcionCurso; let i = index">
-            <th scope="row"></th>
+            <td>{{i+1}}</td>
             <td>{{curso.alumno.legajo}}</td>
             <td>{{curso.alumno.persona.nombre}}</td>
             <td>{{curso.alumno.persona.apellido}}</td>

@@ -1,17 +1,7 @@
 <h1 class="mt-5">
     Listado de Cursos</h1>
 <hr>
-
-
-<div class="row">
-    <div class="col text-center">
-        <button class="btn btn-outline-primary">
-      <i class="fa fa-plus"></i>
-      Nuevo Curso
-    </button>
-    </div>
-</div>
-<table *ngIf="!cargando && cursos.length > 0" class="table mt-3 animated fadeIn faster animated fadeIn faster">
+<table *ngIf="!cargando && cursos.length > 0" class="table mt-3 animated fadeIn faster animated fadeIn faster" id="customers">
     <thead class="thead-dark">
         <tr>
             <th scope="col">#</th>
@@ -24,7 +14,7 @@
     </thead>
     <tbody>
         <tr *ngFor="let curso of cursos; let i = index">
-            <th scope="row">{{curso.identificador}}</th>
+            <td>{{curso.identificador}}</td>
             <td>{{curso.nombre}}</td>
             <td>{{curso.descripcion}}</td>
             <td>{{curso.cupomaximo}}</td>

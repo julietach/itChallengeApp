@@ -6,7 +6,7 @@
         <button class="btn btn-outline-success " type="button" (click)="buscarAlumno(legajo)"><i class="fas fa-search"></i></button>
     </div>
 </div>
-<div class="jumbotron mt-5" *ngIf="this.inscripcionCurso.alumno && this.carrerasAlumno.length>0 ">
+<div class="jumbotron mt-5" *ngIf="this.inscripcionCurso.alumno && this.carrerasAlumno.length>0">
     <div class="row">
         <h1>{{this.inscripcionCurso.alumno.persona.apellido}}, {{this.inscripcionCurso.alumno.persona.nombre}}</h1>
     </div>
@@ -51,28 +51,13 @@
     <div class=" alert alert-danger mt-5 text-center " role="alert ">
         El alumno no se encuentra inscripto a una carrera
     </div>
-    <div class="row mt-5">
-        <div class="col text-center">
-            <button class="btn btn-outline-primary" (click)="getCarreras()">
-          <i class="fa fa-plus"></i>
+    <div class="row mt-5 ">
+        <div class="col text-center ">
+            <button class="btn btn-outline-primary " (click)="inscribirseCarrera=true ">
+          <i class="fa fa-plus "></i>
          Inscribir a una Carrera
         </button>
         </div>
     </div>
-    <div class="form-group" *ngIf="inscribirseCarrera">
-        <label for=" exampleFormControlSelect1 ">Carreras</label>
-        <select (change)="guardarSeleccion($event.target.value) " class="form-control " id="exampleFormControlSelect1 ">
-        <option >Seleccione carrera</option>
-        <option *ngFor="let carrera of carreras "  [value]='carrera.identificador'>{{carrera.nombre}}</option>
-      </select>
-        <div class="row mt-5 text-center ">
-            <div class="col text-center ">
-                <button type="submit " class="btn btn-primary w-25 " (click)="guardarInscripcionCarrera() ">
-            <i class="fa fa-save "></i>
-            Guardar
-            </button>
-            </div>
-        </div>
-    </div>
-
+    <app-inscripcion-carrera [alumno]="this.inscripcionCurso.alumno " *ngIf="inscribirseCarrera " (respuesta)="estaInscripto($event) "></app-inscripcion-carrera>
 </div>

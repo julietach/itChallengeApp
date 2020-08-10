@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Carrera } from 'src/app/models/carrera.model';
 import { AlumnosService } from 'src/app/services/alumnos.service';
 import { Alumno } from 'src/app/models/alumno.model';
@@ -14,6 +14,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 export class InscripcionCarreraComponent implements OnInit {
   carreras: Carrera[] = [];
   @Input() alumno: Alumno;
+  @Output() respuesta = new EventEmitter<InscripcionCarrera>();
   inscripcionCarrera: InscripcionCarrera=new InscripcionCarrera();
   constructor(private alumnosService: AlumnosService, private router: Router,) { }
 
@@ -39,8 +40,8 @@ export class InscripcionCarreraComponent implements OnInit {
         text: 'La inscripción se realizó correctamente',
         icon: 'success'
       });
-      this.router.navigate(['/inscripcionMateria']);
-    }, (err: any) => {
+      this.respuesta.emit(this.inscripcionCarrera);
+    }, (err: any) => {      
       if (err.status === 409) {
       Swal.fire({
         title: 'Error',
@@ -54,6 +55,7 @@ export class InscripcionCarreraComponent implements OnInit {
         icon: 'error'
       });
     }
+    this.respuesta.emit(null);
     });
   }
 }

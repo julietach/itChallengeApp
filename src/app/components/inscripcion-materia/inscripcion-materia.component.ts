@@ -20,9 +20,7 @@ export class InscripcionMateriaComponent implements OnInit {
   cursos: Curso[];
   inscripcionCurso: InscripcionCurso = new InscripcionCurso();
   alumnoEncontrado = true;
-  inscribirseCarrera: boolean;
-  inscripcionCarrera: InscripcionCarrera=new InscripcionCarrera();
-  carreras: Carrera[];
+  inscribirseCarrera: boolean= false;
 
   constructor(private alumnosService: AlumnosService,
     private route: ActivatedRoute) { }
@@ -81,42 +79,9 @@ export class InscripcionMateriaComponent implements OnInit {
       });
     }
   }
-  getCarreras(){
-    this.inscribirseCarrera=true;
-      this.alumnosService.getCarreras().subscribe((carreras: Carrera[]) => {
-      this.carreras = carreras;
-    });
-  }
-  guardarSeleccion(carrera){
-    this.alumnosService.getCarrera(carrera).subscribe((carrera: Carrera) => {
-      this.inscripcionCarrera.carrera=carrera;
-    });
-  }
-  guardarInscripcionCarrera() {
-    this.inscripcionCarrera.alumno=this.inscripcionCurso.alumno;
-    this.inscripcionCarrera.fechainscripcion=new Date();
-    this.alumnosService.createInscripcionCarrera(this.inscripcionCarrera).subscribe((inscripcionCarrera: InscripcionCarrera) => {
-      this.carrerasAlumno.push(this.inscripcionCarrera);
-      Swal.fire({
-        title: 'Éxito',
-        text: 'La inscripción se realizó correctamente',
-        icon: 'success'
-      });
-      this.buscarAlumno(this.inscripcionCarrera.alumno.legajo);
-    }, (err: any) => {
-      if (err.status === 409) {
-      Swal.fire({
-        title: 'Error',
-        text: 'El alumno ya se encuentra inscripto a la carrera',
-        icon: 'error'
-      });
-    }else{
-      Swal.fire({
-        title: 'Error',
-        text: 'Error al registrar inscripcion',
-        icon: 'error'
-      });
+  estaInscripto(respuesta){
+    if(respuesta){
+      this.carrerasAlumno.push(respuesta);
     }
-    });
   }
 }
